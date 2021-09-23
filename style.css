@@ -1,0 +1,89 @@
+*,
+*::before
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html::-webkit-scrollbar {
+    width: .5vw;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: #4c5188;
+}
+
+html::-webkit-scrollbar-track {
+    background-color: #373b69;
+}
+
+body {
+    background-color: #22254b;
+    color: #fff;
+    font-family: 'Gotham Rounded', sans-serif;
+}
+
+
+.todo-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 90vh;
+}
+
+.input {
+    border: none;
+    border-radius: 3px;
+    padding: .5rem;
+    font-size: 1.5rem;
+    color: inherit;
+    background-color: #373b69;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input:focus {
+    outline: 1px solid #fff;
+}
+
+.input::placeholder {
+    color: #c5c5c5;
+}
+
+.todo-container {
+    margin-top: 2rem;
+    padding: 5rem;
+    max-width: 100%;
+    list-style-type: none;
+}
+
+.todo::-webkit-scrollbar {
+    height: .7vh;
+}
+
+.todo::-webkit-scrollbar-thumb {
+    background-color: #4c5188;
+}
+
+.todo::-webkit-scrollbar-track {
+    background-color: #373b69;
+}
+
+.todo {
+    padding: 1rem 1.5rem;
+    background-color: #373b69;
+    min-width: 400px;
+    max-width: 400px;
+    overflow-x: auto;
+    text-align: center;
+}
+
+.todo:not(:last-of-type) {
+    margin-bottom: 5px;
+}
+
+.todo.completed {    
+    color: #b6b6b6;
+    text-decoration: line-through;
+}
