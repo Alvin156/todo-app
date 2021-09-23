@@ -2,22 +2,68 @@ const formEl = document.querySelector('form');
 const inputEl = document.getElementById('input');
 const todoContainer = document.getElementById('todo-container');
 
-formEl.addEventListener('submit', handleAddTodo);
+const todos = JSON.parse(localStorage.getItem('todos'));
 
-function handleAddTodo(e) {
+if (todos) {
+    todos.forEach((todo) => {
+        addTodo(todo);
+    })
+}
+
+formEl.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (!inputEl.value || inputEl.value === '') return;
+    addTodo();
+})
 
-    const todos = document.createElement('li');
-    todos.classList.add('todo');
-    todos.innerText = inputEl.value;
+function addTodo(todo) {
+    let text = inputEl.value;
 
-    todoContainer.appendChild(todos);
+    if (todo) {
+        text = todo.text;
+    }
 
-    todos.addEventListener('click', () => {
-        todos.classList.toggle('completed');
+    if (text) {
+        const todoEl = document.createElement('li');
+        todoEl.classList.add('todo')
+
+        if (todo && todo.completed) {
+            todoEl.classList.add('completed');
+        }
+
+        todoEl.innerText = text;
+
+        todoEl.addEventListener('click', () => {
+            todoEl.classList.add('completed');
+
+            updateLS();
+        });
+
+        todoEl.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            todoEl.remove();
+
+            updateLS();
+        });
+
+        todoContainer.appendChild(todoEl);
+        inputEl.value = '';
+
+        updateLS();
+    }
+}
+
+function updateLS() {
+    const todosEl = document.querySelectorAll('li');
+
+    const todos = [];
+
+    todosEl.forEach((todoEl) => {
+        todos.push({
+            text: todoEl.innerText,
+            completed: todoEl.classList.contains('completed')
+        })
     });
 
-    inputEl.value = '';
+    localStorage.setItem('todos', JSON.stringify(todos));
 }

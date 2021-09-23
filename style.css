@@ -7,7 +7,7 @@
 }
 
 html::-webkit-scrollbar {
-    width: .5vw;
+    width: .5vh;
 }
 
 html::-webkit-scrollbar-thumb {
