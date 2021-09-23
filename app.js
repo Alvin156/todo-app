@@ -62,7 +62,7 @@ function updateLS() {
         todos.push({
             text: todoEl.innerText,
             completed: todoEl.classList.contains('completed')
-        })
+        });
     });
 
     localStorage.setItem('todos', JSON.stringify(todos));
