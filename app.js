@@ -34,7 +34,7 @@ function addTodo(todo) {
         todoEl.innerText = text;
 
         todoEl.addEventListener('click', () => {
-            todoEl.classList.add('completed');
+            todoEl.classList.toggle('completed');
 
             updateLS();
         });
